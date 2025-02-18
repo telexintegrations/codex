@@ -1,0 +1,54 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask specific files
+instance/
+*.log
+
+# Environment variables file
+.env
+
+# Flask migrations folder
+migrations/
+
+# Coverage reports
+.coverage
+*.cover
+*.py,cover
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+.env/
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Flask-specific config files
+*.pyo
+*.db
+*.sqlite3
+
+# Temporary files
+*.bak
+*.swp
+*.swo
+
+# VS Code settings
+.vscode/
+
+# macOS specific files
+.DS_Store
