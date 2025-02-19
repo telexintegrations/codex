@@ -69,7 +69,7 @@ def root():
 @app.route("/coding_challenge", methods=["GET"])
 def get_coding_challenge():
     """ Endpoint to get a coding challenge. """
-    base_url = request.base_url.rstrip("/coding_challenge")
+    app_url = "https://tonybnya-codex.onrender.com/coding_challenge"
     codewars_base_url = "https://www.codewars.com/kata"
     kata_id = random.choice(katas)
 
@@ -78,20 +78,25 @@ def get_coding_challenge():
         {
             "data": {
                 "date": {
-                    "created_at": "2025-02-18",
-                    "updated_at": "2025-02-18"
+                    "created_at": "2025-02-19",
+                    "updated_at": "2025-02-19"
                 },
                 "descriptions": {
                     "app_description": "Posts a coding challenge every morning to sharpen developer skills.",
                     "app_logo": "https://i.postimg.cc/5Nn52jM9/codex.png",
                     "app_name": "Codex",
-                    "app_url": base_url,
+                    "app_url": app_url,
                     "background_color": "#151515"
                 },
                 "integration_category": "Development & Code Management",
                 "integration_type": "interval",
                 "is_active": True,
                 "author": "Tony B. NYA",
+                "key_features": [
+                    "Automatically fetches a new Codewars challenge every day.",
+                    "Provides a direct link to the challenge for easy access.",
+                    "Encourages continuous skill improvement through daily problem-solving."
+                ],
                 "settings": [
                     {
                         "label": "interval",
