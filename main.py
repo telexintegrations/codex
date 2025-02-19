@@ -106,6 +106,7 @@ def get_coding_challenge():
                     }
                 ],
                 "tick_url": f"{kata}/tick",
+                "target_url": ""
             }
         }
     )
