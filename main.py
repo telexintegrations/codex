@@ -66,7 +66,7 @@ def root():
     )
 
 
-@app.route("/coding_challenge", methods=["GET"])
+@app.route("/integration.json", methods=["GET"])
 def get_coding_challenge():
     """ Endpoint to get a coding challenge. """
     base_url = str(request.base_url).rstrip("/")
