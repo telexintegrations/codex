@@ -69,12 +69,8 @@ def root():
 @app.route("/coding_challenge", methods=["GET"])
 def get_coding_challenge():
     """ Endpoint to get a coding challenge. """
-    # app_url = "https://tonybnya-codex.onrender.com/coding_challenge"
     base_url = str(request.base_url).rstrip("/")
-    codewars_base_url = "https://www.codewars.com/kata"
-    kata_id = random.choice(katas)
 
-    kata = f"{codewars_base_url}/{kata_id}"
     return jsonify(
         {
             "data": {
@@ -113,10 +109,9 @@ def get_coding_challenge():
     )
 
 
-# def coding_challenge(payload: MonitorPayload):
 async def coding_challenge(payload: MonitorPayload):
-    """Monitor websites and send a report to the return URL."""
-    codewars_base_url = "https://www.codewars.com/kata"
+    """ Send a kata or the link to a Codewars problem to the return URL. """
+    codewars_base_url = "www.codewars.com/kata"
     kata_id = random.choice(katas)
 
     kata = f"{codewars_base_url}/{kata_id}"
@@ -134,10 +129,11 @@ async def coding_challenge(payload: MonitorPayload):
 
 @app.route("/tick", methods=["POST"])
 def tick():
-    """Flask route to handle monitoring requests."""
+    """ Flask route to handle requests for the tick url. """
     try:
         payload = MonitorPayload(**request.json)
-        asyncio.create_task(coding_challenge(payload))
+        asyncio.run(coding_challenge(payload))
+        logger.info(f"Received tick with return_url: {payload.return_url}")
         return jsonify({"message": "Coding Challenge delivered"}), 202
     except Exception as e:
         return jsonify({"error": str(e)}), 400
