@@ -105,7 +105,7 @@ def get_coding_challenge():
                         "default": "* * * * *"
                     }
                 ],
-                "tick_url": f"{kata}/tick",
+                "tick_url": f"{app_url}/tick",
                 "target_url": ""
             }
         }
