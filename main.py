@@ -69,7 +69,8 @@ def root():
 @app.route("/coding_challenge", methods=["GET"])
 def get_coding_challenge():
     """ Endpoint to get a coding challenge. """
-    app_url = "https://tonybnya-codex.onrender.com/coding_challenge"
+    # app_url = "https://tonybnya-codex.onrender.com/coding_challenge"
+    base_url = str(request.base_url).rstrip("/")
     codewars_base_url = "https://www.codewars.com/kata"
     kata_id = random.choice(katas)
 
@@ -85,7 +86,7 @@ def get_coding_challenge():
                     "app_description": "Posts a coding challenge every morning to sharpen developer skills.",
                     "app_logo": "https://i.postimg.cc/5Nn52jM9/codex.png",
                     "app_name": "Codex",
-                    "app_url": app_url,
+                    "app_url": base_url,
                     "background_color": "#151515"
                 },
                 "integration_category": "Development & Code Management",
@@ -105,7 +106,7 @@ def get_coding_challenge():
                         "default": "* * * * *"
                     }
                 ],
-                "tick_url": f"{app_url}/tick",
+                "tick_url": f"{base_url}/tick",
                 "target_url": ""
             }
         }
@@ -122,9 +123,9 @@ async def coding_challenge(payload: MonitorPayload):
 
     data = {
         "message": kata,
-        "username": "Coding Challenge",
-        "event_name": "Uptime Check",
-        "status": "error"
+        "username": "Codewars",
+        "event_name": "Coding Challenge",
+        "status": "success"
     }
 
     async with httpx.AsyncClient() as client:
