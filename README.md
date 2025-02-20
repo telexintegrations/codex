@@ -13,40 +13,55 @@ This helps developers enhance their problem-solving skills daily.
 ## Setup Instructions
 
 ### Prerequisites
+
 - Python 3.8+
 - [Flask](https://flask.palletsprojects.com/)
 - [httpx](https://www.python-httpx.org/)
 - Telex account
 
 ### Installation
+
 1. Clone this repository:
+
    ```sh
    git clone https://github.com/tonybnya/codex.git
    cd codex
    ```
 
-2. Install dependencies:
+2. Create and activate a virtual environment:
+
+   ```sh
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use: venv\\Scripts\\activate
+   ```
+
+3. Install dependencies:
+
    ```sh
    pip install -r requirements.txt
    ```
 
-3. Create a `.env` file and add the necessary configuration:
+4. Create a `.env` file and add the necessary configuration:
+
    ```sh
    FLASK_PORT=5000
    FLASK_DEBUG=True
    ```
 
-4. Run the Flask server:
+5. Run the Flask server:
+
    ```sh
-   python main.py
+   python3 main.py
    ```
 
 ### Configuration
+
 The integration exposes a `GET` endpoint `/coding_challenge` where Telex can fetch metadata about the app.
 
 - **Tick URL**: This is the webhook Telex will call periodically.
   - Endpoint: `POST /tick`
   - Payload:
+
     ```json
     {
       "channel_id": "<telex_channel_id>",
@@ -58,23 +73,39 @@ The integration exposes a `GET` endpoint `/coding_challenge` where Telex can fet
     ```
 
 ## Testing the Integration
+
 You can manually test the integration by triggering a tick request:
+
 ```sh
-curl -X POST http://localhost:5003/tick -H "Content-Type: application/json" -d '{"channel_id": "your_channel_id", "return_url": "your_return_url", "settings": [{"label": "interval", "type": "text", "required": true, "default": "0 9 * * *"}]}'
+curl -X POST http://localhost:5000/tick -H "Content-Type: application/json" -d '{"channel_id": "your_channel_id", "return_url": "your_return_url", "settings": [{"label": "interval", "type": "text", "required": true, "default": "0 9 * * *"}]}'
+```
+
+OR
+
+You can run Unit Tests:
+
+```sh
+pytest -v
 ```
 
 ## Deployment
+
 ### Using Docker
+
 1. Build the Docker image:
+
    ```sh
    docker build -t codex .
    ```
+
 2. Run the container:
+
    ```sh
    docker run -d -p 5003:5003 codex
    ```
 
 ### Deploying to a Server
+
 - Set up a reverse proxy with Nginx or Apache.
 - Use a process manager like `gunicorn` or `supervisor` to keep the app running.
 - Use a Cloud service (like Render, Vercel, AWS).
@@ -90,4 +121,5 @@ curl -X POST http://localhost:5003/tick -H "Content-Type: application/json" -d '
 ![Screenshot 7](https://i.postimg.cc/KjH63WJG/codex-7.png)
 
 ## Contributing
+
 Feel free to open issues or submit pull requests for improvements!
