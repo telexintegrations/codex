@@ -99,7 +99,7 @@ def get_coding_challenge():
                         "label": "interval",
                         "type": "text",
                         "required": True,
-                        "default": "* * * * *"
+                        "default": "*/1 * * * *"
                     }
                 ],
                 "tick_url": f"{base_url}/tick",

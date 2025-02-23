@@ -27,7 +27,6 @@ env/
 
 # IDEs and editors
 .idea/
-.vscode/
 
 # Jupyter Notebooks
 .ipynb_checkpoints
@@ -49,7 +48,9 @@ build/
 *.swo
 
 # VS Code settings
-.vscode/
 
 # macOS specific files
 .DS_Store
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
